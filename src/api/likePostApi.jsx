@@ -3,7 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import axiosInstance from '../utils/axiosInstance';
 const likePostApi = async (postId, fetchData) => {
     try {
-      // const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem('access_token');
       // let body = {}
       // const response = await axios.post(`${BASE_URL}/api/post/like/${postId}/`,body,{
       //   headers: {
@@ -15,6 +15,9 @@ const likePostApi = async (postId, fetchData) => {
       const response = await axiosInstance({
         url: `/post/like/${postId}/`,
         method: "POST",
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
       });
       if (response.status === 200) {
         console.log('Post like toggled successfully');
