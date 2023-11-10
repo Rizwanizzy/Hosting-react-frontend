@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-
+import axiosInstance from '../utils/axiosInstance';
 const likePostApi = async (postId, fetchData) => {
     try {
       // const accessToken = localStorage.getItem('access_token');
