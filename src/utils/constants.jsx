@@ -1,7 +1,7 @@
 // production
 
 const Protocol = window.location.protocol;
-const BaseDomain = '13.127.4.167';
+const BaseDomain = 'instaconnect.online';
 const BASE_URL = `${Protocol}//${BaseDomain}`;
 
 export {BASE_URL};
