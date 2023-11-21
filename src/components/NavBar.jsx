@@ -155,7 +155,8 @@ const NavBar = ({ updatePostList }) => {
       if (user) {
         const accessToken = localStorage.getItem('access_token')
         const websocketProtocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
-        const wsUrl = `wss://www.instaconnect.online/ws/notification/?token=${accessToken}`;
+        // const socket = new WebSocket(`${websocketProtocol}${window.location.host}/ws/notification/?token=${accessToken}`);
+        const socket = new WebSocket(`wss://www.instaconnect.online/ws/notification/?token=${accessToken}`);
 
         socket.onopen = () => {
           console.log('websocket connection established')
