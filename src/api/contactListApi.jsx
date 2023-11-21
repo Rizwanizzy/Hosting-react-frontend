@@ -2,9 +2,13 @@ import axiosInstance from "../utils/axiosInstance";
 
 const contactListApi = async () => {
     try {
+      const accessToken = localStorage.getItem('access_token');
       const response = await axiosInstance({
         url: '/chat/chatrooms/',
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+      }
       });
       if (response.status === 200) {
         console.log("contact lists for chat", response.data);
