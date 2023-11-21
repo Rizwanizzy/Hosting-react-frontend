@@ -130,7 +130,7 @@ const HomePage = () => {
 
   const fetchData = async () =>{
     try {
-      const data =await postListApi()
+      const data =await postListApi(access_token)
       setPosts(data.posts);
       setUsersNotFollowing(data.users_not_following);
       console.log('Posts inside home page fetchData', data)

@@ -74,7 +74,7 @@ const ExplorePage = () => {
 
     const fetchData = async () =>{
         try {
-            const data = await postListAllApi()
+            const data = await postListAllApi(access_token)
             setPosts([])
             setPosts(data)
         } catch (error) {
