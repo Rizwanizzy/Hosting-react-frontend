@@ -181,6 +181,27 @@ const HomePage = () => {
     }
   };
 
+  const updateCaption = (postId, newCaption) => {
+    console.log('Updating caption:', postId, newCaption);
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === postId ? { ...post, body: newCaption } : post
+      )
+    );
+  };
+  
+  const updatePostList = async () => {
+    try {
+      console.log('updatepostlist is working')
+      const data = await postListApi(access_token);
+      setPosts((prevPosts) => [data.newPost, ...prevPosts]); // Add the new post at the beginning
+      setUsersNotFollowing(data.users_not_following);
+      console.log('Posts inside home page updatePostList', data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const toggleLikePost = async (postId) => {
     try {
       await likePostApi(postId,fetchData)
@@ -229,7 +250,7 @@ const HomePage = () => {
           <Loading />
         ):(
       <ContentContainer>
-        <PostModal isVisible={showPostModal} onClose={closePostModal} postID={postId} initialCaption={initialCaption} initialImage={initialImage} />
+        <PostModal isVisible={showPostModal} onClose={closePostModal} postID={postId} initialCaption={initialCaption} initialImage={initialImage} updateCaption={updateCaption} updatePostList={updatePostList}/>
         <PostDetailModal isVisible={showPostDetailModal} onClose={closePostModal} postID={postId} />
         <div style={{display:'flex'}} >
           <div className="mt-10 w-9/12">
