@@ -155,8 +155,8 @@ const NavBar = ({ updatePostList }) => {
       if (user) {
         const accessToken = localStorage.getItem('access_token')
         const websocketProtocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
-        // const socket = new WebSocket(`${websocketProtocol}${window.location.host}/ws/notification/?token=${accessToken}`);
-        const socket = new WebSocket(`wss://www.instaconnect.online/ws/notification/?token=${accessToken}`);
+        const socket = new WebSocket(`${websocketProtocol}${window.location.host}/ws/notification/?token=${accessToken}`);
+        // const socket = new WebSocket(`wss://www.instaconnect.online/ws/notification/?token=${accessToken}`);
 
         socket.onopen = () => {
           console.log('websocket connection established')
@@ -173,6 +173,11 @@ const NavBar = ({ updatePostList }) => {
         socket.onclose = (event) => {
           console.log('Websocket connection closed' , event)
         }
+
+        socket.onerror = (error) => {
+          console.error('WebSocket error:', error);
+        };
+    
         return () =>{
           socket.close()
         }
