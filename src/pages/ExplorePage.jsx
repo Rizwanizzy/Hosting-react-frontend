@@ -43,7 +43,8 @@ const ContentContainer = styled.div`
   flex-grow: 1;
   padding: 20px;
   padding-left:16.5%;
-  height:100%;
+  min-height:100%;
+  height:fit-content;
   background-color:#faf7f4
 `;
 
